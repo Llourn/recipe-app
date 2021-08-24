@@ -1,0 +1,27 @@
+@use "../abstracts/colors";
+@use "../abstracts/sizes";
+
+.navbar {
+  padding: sizes.$content-padding;
+  display: flex;
+  justify-content: space-between;
+  background-color: colors.$primary;
+  h1 {
+    color: colors.$white;
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    gap: 5px;
+  }
+
+  li {
+    display: flex;
+    align-items: center;
+  }
+
+  a {
+    color: colors.$white;
+  }
+}

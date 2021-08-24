@@ -1,0 +1,8 @@
+@use "./abstracts/sizes";
+
+.app {
+}
+
+.main {
+  padding: sizes.$content-padding;
+}

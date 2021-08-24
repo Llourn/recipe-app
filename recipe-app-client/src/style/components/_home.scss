@@ -1,0 +1,18 @@
+@use '../abstracts/sizes';
+.description-card {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  > * {
+    flex: 1 1 450px;
+  }
+}
+
+.description-card__text {
+  padding-bottom: sizes.$content-padding;
+}
+.description-card__image {
+  img {
+    width: 100%;
+  }
+}

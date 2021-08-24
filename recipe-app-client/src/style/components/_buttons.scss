@@ -1,0 +1,13 @@
+@use '../abstracts/colors';
+
+button {
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+  padding: 1rem;
+  background-color: colors.$tertiary;
+  color: colors.$white;
+  &:hover {
+    background-color: colors.$secondary;
+  }
+}
