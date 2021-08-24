@@ -1,9 +1,13 @@
 import { Link } from "react-router-dom";
+import logoWhite from "../img/logo-white.png";
 
 const Navbar = () => {
   return (
     <section className="navbar">
-      <h1>Recipe App</h1>
+      <div className="navbar__title">
+        <img src={logoWhite} alt="" />
+        <h1>Recipe App</h1>
+      </div>
       <ul>
         <li>
           <Link to="/">Home</Link>

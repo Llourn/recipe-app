@@ -1,5 +1,5 @@
 @use "./colors";
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,700;1,400;1,700&display=swap");
 
 html {
   font-family: "Open Sans", sans-serif;
@@ -21,13 +21,24 @@ button {
   font-size: 1.4rem;
 }
 
-a,
-Link {
+a {
   font-size: 1.4rem;
   color: colors.$primary;
   text-decoration: none;
-  :visited {
+  &:visited {
     color: colors.$primary;
+  }
+  &:hover {
+    color: colors.$secondary;
+  }
+}
+
+.navbar {
+  a {
+    color: colors.$white;
+    &:hover {
+      color: colors.$tertiary;
+    }
   }
 }
 

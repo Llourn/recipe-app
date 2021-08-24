@@ -1,15 +1,20 @@
 @use '../abstracts/sizes';
+@use '../abstracts/colors';
+
 .description-card {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  > * {
-    flex: 1 1 450px;
-  }
+  background-image: url("../../img/splash-image.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position-y: center;
+  background-position-x: left;
+  padding: calc(#{sizes.$content-padding * 5}) sizes.$content-padding;
 }
 
 .description-card__text {
-  padding-bottom: sizes.$content-padding;
+  max-width: 500px;
+  padding: sizes.$content-padding;
+  margin-left: auto;
+  background: colors.$white;
 }
 .description-card__image {
   img {

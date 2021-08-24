@@ -1,5 +1,3 @@
-import splashImage from "../img/sushi.jpeg";
-
 const Home = () => {
   return (
     <section className="home">
@@ -7,13 +5,13 @@ const Home = () => {
         <div className="description-card__text flow">
           <h1>Looking for a place to put your recipes?</h1>
           <p>
-            Look no further! <b>RECIPE APP</b> is the app for you!
+            Look no further! <b>RECIPE APP</b> is the <i>app for you!</i>
           </p>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque
-            soluta in assumenda numquam enim. Sed tempore, accusantium,
-            blanditiis itaque unde, corrupti in perferendis asperiores voluptas
-            tempora ut aspernatur labore veritatis?
+            <a href="/">Lorem ipsum dolor sit amet</a>, consectetur adipisicing
+            elit. Neque soluta in assumenda numquam enim. Sed tempore,
+            accusantium, blanditiis itaque unde, corrupti in perferendis
+            asperiores voluptas tempora ut aspernatur labore veritatis?
           </p>
           <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati
@@ -29,9 +27,9 @@ const Home = () => {
             repellendus.
           </p>
         </div>
-        <div className="description-card__image">
+        {/* <div className="description-card__image">
           <img src={splashImage} alt="Delicious Sushi" />
-        </div>
+        </div> */}
       </div>
     </section>
   );
