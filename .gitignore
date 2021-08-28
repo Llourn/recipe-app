@@ -1,26 +1,24 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-recipe-app-server/node_modules
-recipe-app-client/node_modules
-recipe-app-client/.pnp
+node_modules
+.pnp
 .pnp.js
 
 # testing
-recipe-app-client/coverage
+coverage
 
 # production
-recipe-app-client/build
+build
 
 # misc
-recipe-app-client/.DS_Store
-recipe-app-client/.env.local
-recipe-app-client/.env.development.local
-recipe-app-client/.env.test.local
-recipe-app-client/.env.production.local
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-recipe-app-client/npm-debug.log*
-recipe-app-client/yarn-debug.log*
-recipe-app-client/yarn-error.log*
-recipe-app-client/.env
-recipe-app-server/environment.js
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.env
