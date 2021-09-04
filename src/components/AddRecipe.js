@@ -1,11 +1,9 @@
-import Ingredient from "./Ingredient";
 import { useState } from "react";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 const AddRecipe = () => {
   const [ingredients, setIngredients] = useState([]);
-  const [ingredientCount, setIngredientCount] = useState(0);
   const [recipeName, setRecipeName] = useState("");
   const [serves, setServes] = useState("");
   const [getStarted, setGetStarted] = useState("");
@@ -14,7 +12,6 @@ const AddRecipe = () => {
   const handleAddIngredient = (event) => {
     event.preventDefault();
     const newValue = {
-      id: ingredientCount,
       name: `Test Name`,
       quantity: 0,
       unit: "unit",
@@ -22,7 +19,6 @@ const AddRecipe = () => {
     setIngredients((prevState) => {
       return [...prevState, newValue];
     });
-    setIngredientCount((prevState) => ++prevState);
   };
 
   const handleRecipeNameChange = (e) => {
@@ -40,6 +36,7 @@ const AddRecipe = () => {
 
   const handleCreate = async (e) => {
     e.preventDefault();
+    console.log(instructions);
     const data = await fetch(process.env.REACT_APP_API_BASE + "/recipe/new", {
       crossDomain: true,
       method: "POST",
@@ -56,30 +53,41 @@ const AddRecipe = () => {
         instructions: instructions,
       }),
     }).then((res) => res.json());
-
     console.log(data);
   };
 
-  const handleIdIngredientChange = (e, id, property) => {
-    let items = [...ingredients];
-    const index = findIndexOfObjectWithProperty(items, property, id);
-    console.log(index);
-    let item = items[index];
-    item[property] = e.target.value;
-    setIngredients(items);
+  const handleIngredientNameChange = (e, index) => {
+    setIngredients((prevState) => {
+      let list = [...prevState];
+      list[index].name = e.target.value;
+      return list;
+    });
   };
 
-  function findIndexOfObjectWithProperty(array, attr, value) {
-    for (let i = 0; i < array.length; i++) {
-      console.log(attr);
-      console.log(array);
-      console.log(array[i][attr]);
-      if (array[i][attr] === value) {
-        return i;
-      }
-    }
-    return -1;
-  }
+  const handleIngredientQuantityChange = (e, index) => {
+    setIngredients((prevState) => {
+      let list = [...prevState];
+      list[index].quantity = e.target.value;
+      return list;
+    });
+  };
+
+  const handleIngredientUnitChange = (e, index) => {
+    setIngredients((prevState) => {
+      let list = [...prevState];
+      list[index].unit = e.target.value;
+      return list;
+    });
+  };
+
+  const handleIngredientDelete = (e, index) => {
+    e.preventDefault();
+    setIngredients((prevState) => {
+      let list = [...prevState];
+      list.splice(index, 1);
+      return list;
+    });
+  };
 
   return (
     <section className="add-recipe">
@@ -122,12 +130,51 @@ const AddRecipe = () => {
         <div className="ingredients">
           <button onClick={(event) => handleAddIngredient(event)}>+</button>
           {ingredients.length > 0 ? (
-            ingredients.map((element) => (
-              <Ingredient
-                key={element.id}
-                ingredient={element}
-                handleIdIngredientChange={handleIdIngredientChange}
-              />
+            ingredients.map((element, index) => (
+              <div key={`key-${index}`} className={`ingredient id-${index}`}>
+                <input
+                  type="text"
+                  name={`ingredient-name`}
+                  id={`ingredient-name`}
+                  placeholder="Name"
+                  value={element.name}
+                  onChange={(e) => handleIngredientNameChange(e, index)}
+                />
+                <input
+                  type="text"
+                  name="ingredient-quantity"
+                  id="ingredient-quantity"
+                  placeholder="Quantity"
+                  value={element.quantity}
+                  onChange={(e) => handleIngredientQuantityChange(e, index)}
+                />
+                <select
+                  name="unit-of-measurement"
+                  id="unit-of-measurement"
+                  value={element.unit}
+                  onChange={(e) => {
+                    handleIngredientUnitChange(e, index);
+                  }}
+                >
+                  <option value="unit">unit</option>
+                  <option value="cup">cup</option>
+                  <option value="tsp">tsp</option>
+                  <option value="tbsp">tbsp</option>
+                  <option value="ml">ml</option>
+                  <option value="l">l</option>
+                  <option value="oz">oz</option>
+                  <option value="lb">lb</option>
+                  <option value="g">g</option>
+                  <option value="kg">kg</option>
+                </select>
+                <button
+                  onClick={(e) => {
+                    handleIngredientDelete(e, index);
+                  }}
+                >
+                  X
+                </button>
+              </div>
             ))
           ) : (
             // ingredients.forEach((ingredient) => {
@@ -147,6 +194,7 @@ const AddRecipe = () => {
             const data = editor.getData();
             setInstructions(data);
             console.log({ event, editor, data });
+            console.log(instructions);
           }}
           onBlur={(event, editor) => {
             console.log("Blur.", editor);
