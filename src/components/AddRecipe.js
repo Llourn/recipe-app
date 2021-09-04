@@ -4,33 +4,25 @@ import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 const AddRecipe = () => {
-  const [ingredients, setIngredients] = useState([
-    {
-      id: 0,
-      name: `testName0`,
-      quantity: 0,
-      unit: "unit",
-    },
-  ]);
+  const [ingredients, setIngredients] = useState([]);
+  const [ingredientCount, setIngredientCount] = useState(0);
   const [recipeName, setRecipeName] = useState("");
   const [serves, setServes] = useState("");
   const [getStarted, setGetStarted] = useState("");
   const [instructions, setInstructions] = useState("");
 
-  let count = 1;
-
   const handleAddIngredient = (event) => {
     event.preventDefault();
     const newValue = {
-      id: count,
-      name: `testName0`,
+      id: ingredientCount,
+      name: `Test Name`,
       quantity: 0,
       unit: "unit",
     };
     setIngredients((prevState) => {
       return [...prevState, newValue];
     });
-    count++;
+    setIngredientCount((prevState) => ++prevState);
   };
 
   const handleRecipeNameChange = (e) => {
@@ -67,6 +59,27 @@ const AddRecipe = () => {
 
     console.log(data);
   };
+
+  const handleIdIngredientChange = (e, id, property) => {
+    let items = [...ingredients];
+    const index = findIndexOfObjectWithProperty(items, property, id);
+    console.log(index);
+    let item = items[index];
+    item[property] = e.target.value;
+    setIngredients(items);
+  };
+
+  function findIndexOfObjectWithProperty(array, attr, value) {
+    for (let i = 0; i < array.length; i++) {
+      console.log(attr);
+      console.log(array);
+      console.log(array[i][attr]);
+      if (array[i][attr] === value) {
+        return i;
+      }
+    }
+    return -1;
+  }
 
   return (
     <section className="add-recipe">
@@ -107,12 +120,22 @@ const AddRecipe = () => {
         <br />
         <label>Ingredients</label>
         <div className="ingredients">
-          {ingredients &&
-            Object.entries(ingredients).map(([key, value]) => (
-              <Ingredient key={key} index={key} info={value} />
-            ))}
+          <button onClick={(event) => handleAddIngredient(event)}>+</button>
+          {ingredients.length > 0 ? (
+            ingredients.map((element) => (
+              <Ingredient
+                key={element.id}
+                ingredient={element}
+                handleIdIngredientChange={handleIdIngredientChange}
+              />
+            ))
+          ) : (
+            // ingredients.forEach((ingredient) => {
+            //   <Ingredient key={ingredient.id} ingredient={ingredient} />;
+            // })
+            <p>Let's start adding ingredients to this recipe!</p>
+          )}
         </div>
-        <button onClick={(event) => handleAddIngredient(event)}>+</button>
         <CKEditor
           editor={ClassicEditor}
           data="<p>Write out instructions here! 📄</p>"
