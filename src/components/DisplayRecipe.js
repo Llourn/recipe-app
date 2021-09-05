@@ -24,8 +24,8 @@ const DisplayRecipe = () => {
           <h1>{recipe.name}</h1>
           <p>{recipe.serves}</p>
           <p>{recipe.getStarted}</p>
-          {recipe.ingredients.map((ingredient) => (
-            <div className="display-ingredient">
+          {recipe.ingredients.map((ingredient, index) => (
+            <div key={index} className="display-ingredient">
               <span>{ingredient.name}</span>
               <span>{ingredient.quantity}</span>
               <span>{ingredient.unitOfMeasurement}</span>

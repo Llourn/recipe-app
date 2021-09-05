@@ -1,6 +1,6 @@
 import { useState } from "react";
+import Editor from "../ckeditor5/build/ckeditor";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 const AddRecipe = () => {
   const [ingredients, setIngredients] = useState([]);
@@ -30,10 +30,6 @@ const AddRecipe = () => {
     setServes(serveNumber);
   };
 
-  const handleGetStartedChange = (e) => {
-    setGetStarted(e.target.value);
-  };
-
   const handleCreate = async (e) => {
     e.preventDefault();
     console.log(instructions);
@@ -48,7 +44,7 @@ const AddRecipe = () => {
       body: JSON.stringify({
         name: recipeName,
         serves: serves,
-        getStarted: getStarted,
+        getStarted: getStarted || "GS PLACEHOLDER",
         ingredients: ingredients,
         instructions: instructions,
       }),
@@ -111,20 +107,26 @@ const AddRecipe = () => {
           />
         </label>
         <br />
-        <label>
-          Get started:
-          <br />
-          <textarea
-            name="get-started"
-            id="get-started"
-            cols="30"
-            rows="10"
-            value={getStarted}
-            onChange={(e) => {
-              handleGetStartedChange(e);
-            }}
-          ></textarea>
-        </label>
+        <CKEditor
+          editor={Editor}
+          config={{
+            toolbar: [
+              "Heading",
+              "bold",
+              "Italic",
+              "Link",
+              "BulletedList",
+              "NumberedList",
+              "Undo",
+              "Redo",
+            ],
+          }}
+          data="<p>Getting started stuff goes here.</p>"
+          onChange={(event, editor) => {
+            const data = editor.getData();
+            setGetStarted(data);
+          }}
+        />
         <br />
         <label>Ingredients</label>
         <div className="ingredients">
@@ -177,30 +179,27 @@ const AddRecipe = () => {
               </div>
             ))
           ) : (
-            // ingredients.forEach((ingredient) => {
-            //   <Ingredient key={ingredient.id} ingredient={ingredient} />;
-            // })
             <p>Let's start adding ingredients to this recipe!</p>
           )}
         </div>
         <CKEditor
-          editor={ClassicEditor}
-          data="<p>Write out instructions here! 📄</p>"
-          onReady={(editor) => {
-            // You can store the "editor" and use when it is needed.
-            console.log("Editor is ready to use!", editor);
+          editor={Editor}
+          config={{
+            toolbar: [
+              "Heading",
+              "bold",
+              "Italic",
+              "Link",
+              "BulletedList",
+              "NumberedList",
+              "Undo",
+              "Redo",
+            ],
           }}
+          data="<p>Write out instructions here! 📄</p>"
           onChange={(event, editor) => {
             const data = editor.getData();
             setInstructions(data);
-            console.log({ event, editor, data });
-            console.log(instructions);
-          }}
-          onBlur={(event, editor) => {
-            console.log("Blur.", editor);
-          }}
-          onFocus={(event, editor) => {
-            console.log("Focus.", editor);
           }}
         />
         <br />
