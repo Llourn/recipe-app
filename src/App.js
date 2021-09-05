@@ -5,6 +5,7 @@ import Mealplan from "./components/Mealplan";
 import AddRecipe from "./components/AddRecipe";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import DisplayRecipe from "./components/DisplayRecipe";
 
 function App() {
   return (
@@ -24,6 +25,9 @@ function App() {
             </Route>
             <Route exact path="/Mealplan">
               <Mealplan />
+            </Route>
+            <Route path="/recipes/:id">
+              <DisplayRecipe />
             </Route>
           </Switch>
         </div>

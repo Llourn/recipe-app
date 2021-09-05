@@ -14,7 +14,7 @@ const AddRecipe = () => {
     const newValue = {
       name: `Test Name`,
       quantity: 0,
-      unit: "unit",
+      unitOfMeasurement: "unit",
     };
     setIngredients((prevState) => {
       return [...prevState, newValue];
@@ -75,7 +75,7 @@ const AddRecipe = () => {
   const handleIngredientUnitChange = (e, index) => {
     setIngredients((prevState) => {
       let list = [...prevState];
-      list[index].unit = e.target.value;
+      list[index].unitOfMeasurement = e.target.value;
       return list;
     });
   };
