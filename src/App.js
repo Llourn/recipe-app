@@ -2,7 +2,7 @@ import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Recipes from "./components/Recipes";
 import Mealplan from "./components/Mealplan";
-import AddRecipe from "./components/AddRecipe";
+import RecipeForm from "./components/RecipeForm";
 
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import DisplayRecipe from "./components/DisplayRecipe";
@@ -20,8 +20,8 @@ function App() {
             <Route exact path="/Recipes">
               <Recipes />
             </Route>
-            <Route exact path="/Addrecipe">
-              <AddRecipe />
+            <Route exact path="/RecipeForm">
+              <RecipeForm />
             </Route>
             <Route exact path="/Mealplan">
               <Mealplan />

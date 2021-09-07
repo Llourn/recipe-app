@@ -1,0 +1,10 @@
+@use "../abstracts/colors";
+@use "../abstracts/sizes";
+
+.recipes {
+  padding: sizes.$content-padding;
+
+  .btn {
+    margin-top: 1rem;
+  }
+}

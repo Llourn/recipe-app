@@ -2,6 +2,7 @@
 @use "../abstracts/sizes";
 
 .navbar {
+  padding: 0 sizes.$content-padding;
   display: flex;
   justify-content: space-between;
   background-color: colors.$primary;
@@ -15,7 +16,7 @@
     padding: calc(#{sizes.$content-padding} / 2);
     list-style: none;
     display: flex;
-    gap: 5px;
+    gap: 1rem;
   }
 
   li {

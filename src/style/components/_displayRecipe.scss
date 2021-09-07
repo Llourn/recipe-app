@@ -1,0 +1,20 @@
+@use "../abstracts/sizes";
+@use "../abstracts/colors";
+
+.display-recipe {
+  padding: sizes.$content-padding;
+}
+
+.display-recipe__ingredients {
+  h2 {
+    margin-bottom: 1rem;
+  }
+}
+
+.display-recipe__ingredient {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background-color: lightblue;
+  margin-bottom: 2px;
+}

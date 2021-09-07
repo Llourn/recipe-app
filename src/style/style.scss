@@ -12,6 +12,9 @@
 @use './components/navbar';
 @use './components/home';
 @use './components/buttons';
+@use './components/recipes';
+@use './components/recipeForm';
+@use './components/displayRecipe';
 
 // Layout
 @use './main';

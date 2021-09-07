@@ -1,0 +1,22 @@
+@use '../abstracts/sizes';
+
+.recipe-form {
+  padding: sizes.$content-padding;
+  label {
+    display: block;
+    input {
+      margin-left: 1rem;
+    }
+  }
+}
+
+.recipe-form__ingredient {
+  > * {
+    margin-right: 1rem;
+    display: inline-block;
+  }
+}
+
+.ck.ck-reset.ck-editor.ck-rounded-corners {
+  margin-top: 1rem;
+}

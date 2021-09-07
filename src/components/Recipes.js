@@ -17,28 +17,29 @@ const Recipes = () => {
 
   return (
     <section>
-      <div className="recipe-buttons">
-        {error && <div>{error}</div>}
-        {isPending && <div>Loading...</div>}
+      <div className="recipes flow">
+        {error && <p>{error}</p>}
+        {isPending && <p>Loading...</p>}
         {!isPending &&
           recipes &&
           (recipes.length > 0 ? (
-            recipes.map((recipe) => (
-              <Link to={`recipes/${recipe._id}`} key={recipe._id}>
-                {recipe.name}
-              </Link>
-            ))
+            <div className="recipes__list flow">
+              {recipes.map((recipe) => (
+                <p key={recipe._id}>
+                  <Link to={`recipes/${recipe._id}`}>{recipe.name}</Link>
+                </p>
+              ))}
+            </div>
           ) : (
             <p>
               You have no recipes, please click the Add Recipe button to add
               your first recipe!
             </p>
           ))}
-        <Link to="/Addrecipe">
-          <button>Add Recipe</button>
+        <Link to="/RecipeForm">
+          <button className="btn">Add Recipe</button>
         </Link>
       </div>
-      <div className="recipe-list"></div>
     </section>
   );
 };

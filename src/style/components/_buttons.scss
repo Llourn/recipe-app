@@ -1,13 +1,28 @@
 @use '../abstracts/colors';
 
-button {
+.btn {
   border: none;
   cursor: pointer;
   border-radius: 3px;
   padding: 1rem;
+  margin-bottom: 1rem;
   background-color: colors.$tertiary;
   color: colors.$white;
   &:hover {
     background-color: colors.$primary;
   }
+}
+
+.btn--round {
+  border-radius: 50%;
+}
+
+.btn--delete {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  height: 25px;
+  width: 25px;
+  margin: 0;
+  padding: 0;
 }
